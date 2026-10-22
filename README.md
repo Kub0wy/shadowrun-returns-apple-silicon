@@ -9,10 +9,10 @@ A community-built patch for the original macOS edition of *Shadowrun Returns*. S
 
 [![macOS](https://img.shields.io/badge/platform-macOS-181717?style=for-the-badge&logo=apple&logoColor=white)](#compatibility)
 [![Apple Silicon](https://img.shields.io/badge/Apple_Silicon-Rosetta_2-343a40?style=for-the-badge)](#how-it-works)
-[![Beta](https://img.shields.io/badge/release-v0.2.0--beta-f0ad4e?style=for-the-badge)](#compatibility)
+[![Beta](https://img.shields.io/badge/release-v0.3.3--beta-f0ad4e?style=for-the-badge)](#compatibility)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-Support-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://buymeacoffee.com/jakubrolkab)
 
-[Quick start](#quick-start) · [Compatibility](#compatibility) · [How it works](#how-it-works) · [Limitations](#known-limitations) · [Support](#support-development)
+[Download GUI installer](#download--install-gui) · [Compatibility](#compatibility) · [How it works](#how-it-works) · [Limitations](#known-limitations) · [Support](#support-development)
 
 </div>
 
@@ -54,10 +54,52 @@ Original macOS build                  Patched build
 - The original Steam native plugins `steamwrap` and `SteamAPIWrap` are 32-bit; the 64-bit player cannot load them. The observed log says **“Cloud disabled, Steam not available.”**
 - This is a compatibility patch, not a native ARM64 port. Rosetta 2 is required.
 - The game's old OpenGL rendering path and macOS compatibility may vary between machines.
-- The script requires an original Steam macOS installation and Unity **4.2.2f1**. Other game builds are intentionally refused.
+- The installer requires the original macOS game build using Unity **4.2.2f1** and the matching official Unity 4.2.2 DMG. Other game builds are intentionally refused.
 - Full-campaign stability, all third-party content and editor integration have not been verified.
 
-## Quick start
+## Download & install (GUI)
+
+**Recommended for most users:** download the ready-to-run macOS app from the **v0.3.3-beta** release. You do **not** need to build the installer, use Terminal, or manually extract Unity.
+
+### [⬇ Download the GUI installer — v0.3.3-beta](https://github.com/Kub0wy/shadowrun-returns-apple-silicon/releases/tag/v0.3.3-beta)
+
+In the release's **Assets**, choose:
+
+`Shadowrun-Returns-Apple-Silicon-Patcher-v0.3.3-beta-macOS.zip`
+
+> [!TIP]
+> Use the ZIP from **Release Assets**, not the automatically generated “Source code (zip)” archive. Source archives contain repository source code, not the ready-to-run app. If the release asset is not listed yet, the GUI release is not ready to download.
+
+### Step-by-step
+
+1. Install a legitimate **macOS** copy of *Shadowrun Returns* (tested with the Steam build using Unity 4.2.2f1).
+2. Download the [official Unity 4.2.2 macOS DMG](https://beta.unity3d.com/download/unity-4.2.2.dmg). **Do not install Unity**—the patcher extracts the required runtime directly from this file.
+3. Download the GUI installer ZIP under **Release Assets**, unzip it, and open **Shadowrun Returns Apple Silicon Patcher.app**.
+4. Select the game's installation folder (the folder containing `Shadowrun.app`).
+5. Select the downloaded `unity-4.2.2.dmg` file and an existing destination folder.
+6. Run the patch. The installer shows its current stage, extracts Unity automatically, makes a separate game copy, signs it, and cleans up temporary extraction files.
+7. Open the resulting `Shadowrun-AppleSilicon.app` from Finder.
+
+**Your original Steam game and downloaded Unity DMG remain unchanged.** A separate patched app is created in the chosen destination. Temporary extraction files are cleaned up after successful installation and typical handled failures; unexpected process termination can leave temporary files behind.
+
+> [!NOTE]
+> The app is **ad-hoc signed, not Apple-notarized**. macOS may show a security warning on another computer. Review the app's origin, then use the system's **Open Anyway** workflow in Privacy & Security if you trust it. Do not broadly disable Gatekeeper.
+
+### GUI features in v0.3.3-beta
+
+- Guided macOS installer with project icon
+- Stage-based installation progress (not an accurate per-byte percentage)
+- Automatic extraction from the official Unity 4.2.2 DMG
+- Isolated, patched game copy and ad-hoc signing
+- Cleanup on success and common handled errors
+- Original game installation is not overwritten
+
+---
+
+## Advanced / command-line installation
+
+The following is an alternative for developers and troubleshooting. The GUI above is the recommended path.
+
 
 ### 1. Get the game and matching Unity runtime
 
@@ -135,14 +177,14 @@ The source app and user saves are not touched by the patcher.
 - [x] Independent path-based beta patcher
 - [ ] Test on additional M1/M2/M3/M4 Macs and macOS releases
 - [ ] Improve Steam integration where technically feasible
-- [ ] Graphical installer and automated Unity extraction
+- [x] Graphical installer and automated Unity extraction (v0.3.3-beta)
 - [ ] Stable 1.0 release after broader testing
 
 ## Legal and credits
 
 **Unofficial fan compatibility tool.** Not affiliated with or endorsed by Harebrained Schemes, Unity Technologies, Valve, or the relevant rights holders. *Shadowrun* and related names are trademarks of their owners.
 
-This repository provides **script source code only**. You must provide your own legitimately acquired game and Unity runtime. The script is licensed under the [MIT License](LICENSE), which does not apply to game assets or Unity binaries.
+The release includes an installer app containing patching logic, but **no proprietary game or Unity engine binaries**. You must provide your own legitimately acquired game and official Unity 4.2.2 DMG. The original project script is licensed under the [MIT License](LICENSE), which does not apply to game assets or Unity binaries.
 
 Built on the documented approach to upgrading Unity-based macOS games with their matching 64-bit players; see [mac-gaming-guides](https://github.com/boggydigital/mac-gaming-guides/blob/main/common/unity-porting.md).
 
