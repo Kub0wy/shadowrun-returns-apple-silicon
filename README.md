@@ -31,7 +31,7 @@ Fortunately, the game data was made with Unity **4.2.2f1**, whose official macOS
 Original macOS build                  Patched build
 ┌────────────────────────┐          ┌─────────────────────────┐
 │ Unity 4.2.2f1 — i386   │          │ Unity 4.2.2f1 — x86_64  │
-│ Cannot start on M-series│   →      │ Rosetta 2 → Apple Silicon│
+│ Cannot start on M-series│   →     │ Rosetta 2 → Apple Silicon│
 │ Original game content  │          │ Original game content   │
 └────────────────────────┘          └─────────────────────────┘
 ```
