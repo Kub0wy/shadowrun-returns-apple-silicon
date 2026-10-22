@@ -1,0 +1,7 @@
+*.app/
+*.dmg
+*.pkg
+Payload
+Extracted/
+ShadowrunPatchWork/
+.DS_Store
